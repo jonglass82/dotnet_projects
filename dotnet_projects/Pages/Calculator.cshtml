@@ -1,4 +1,61 @@
 ﻿@page
 @model dotnet_projects.Pages.CalculatorModel
 @{
+
 }
+
+
+<h1>Calculator</h1>
+
+<form method="post">
+
+    <label>Value 1:</label>
+    <input asp-for="Val1" name="Val1" id="val1" value="@Model.Result" type="text" />
+
+    <label>Operator</label>
+    <input asp-for="Operator" name="Operator" value="" id="operator" type="text" />
+
+    <label>Value 2:</label>
+    <input asp-for="Val2" name="Val2" value="" id="val2" type="text" />
+
+    <label>Result:</label>
+    <input readonly asp-for="Result" />
+
+
+
+    <button asp-page-handler="Calculate" type="submit">Get Sum</button>
+
+    <button asp-page-handler="Clear" type="submit">Clear</button>
+
+</form>
+
+<div class="calculator">
+    <div class="buttonRow">
+        <button onclick="setValue(1)">1</button>
+        <button onclick="setValue(2)">2</button>
+        <button onclick="setValue(3)">3</button>
+    </div>
+    <div class="buttonRow">
+        <button onclick="setValue(4)">4</button>
+        <button onclick="setValue(5)">5</button>
+        <button onclick="setValue(6)">6</button>
+    </div>
+    <div class="buttonRow">
+        <button onclick="setValue(7)">7</button>
+        <button onclick="setValue(8)">8</button>
+        <button onclick="setValue(9)">9</button>
+    </div>
+    <div class="buttonRow">
+        <button onclick="setOperator('+')">+</button>
+        <button onclick="setOperator('-')">-</button>
+        <button onclick="setOperator('x')">x</button>
+        <button onclick="setOperator('/')">/</button>
+        <button onclick="positiveNegative()">-/+</button>
+    </div>
+</div>
+
+
+
+
+
+
