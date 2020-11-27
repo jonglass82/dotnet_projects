@@ -17,38 +17,56 @@ namespace dotnet_projects.Pages
         public void OnGet()
         {
             Console.WriteLine("Hello from the Calculator Model");
+            //Val1 = 0;
+            //Val2 = 0;
+            //Operator = String.Empty;
+            //Result = "0";
+            Operator = String.Empty;
+
         }
 
         public ActionResult OnPostCalculate()
         {
-            if(HttpContext.Request.Form["Val1"] == "")
+            if (HttpContext.Request.Form["Val1"] == "" || HttpContext.Request.Form["Val2"] == "" || HttpContext.Request.Form["Operator"] == "")
             {
-                Val1 = float.Parse(Result);
+                //Val1 = 0;
+                //Val2 = 0;
+                //Operator = "";
+                Result = "0";
+                return Page();
             }
             else
             {
-                Val1 = float.Parse(HttpContext.Request.Form["Val1"]);
-                Val2 = float.Parse(HttpContext.Request.Form["Val2"]);
-                Operator = HttpContext.Request.Form["Operator"];
-            }
 
-            switch (Operator)
-            {
-                case ("+"):
-                    Result = (Val1 + Val2).ToString();
-                    break;
-                case ("x"):
-                    Result = (Val1 * Val2).ToString();
-                    break;
-                case ("/"):
-                    Result = (Val1 / Val2).ToString();
-                    break;
-                case ("-"):
-                    Result = (Val1 - Val2).ToString();
-                    break;
-            }
+                if (HttpContext.Request.Form["Val1"] == "")
+                {
+                    Val1 = float.Parse(Result);
+                }
+                else
+                {
+                    Val1 = float.Parse(HttpContext.Request.Form["Val1"]);
+                    Val2 = float.Parse(HttpContext.Request.Form["Val2"]);
+                    Operator = HttpContext.Request.Form["Operator"];
+                }
 
-            return Page();
+                switch (Operator)
+                {
+                    case ("+"):
+                        Result = (Val1 + Val2).ToString();
+                        break;
+                    case ("x"):
+                        Result = (Val1 * Val2).ToString();
+                        break;
+                    case ("/"):
+                        Result = (Val1 / Val2).ToString();
+                        break;
+                    case ("-"):
+                        Result = (Val1 - Val2).ToString();
+                        break;
+                }
+
+                return Page();
+            }
         }
 
         public ActionResult OnPostClear()
@@ -56,6 +74,7 @@ namespace dotnet_projects.Pages
             Val1 = 0;
             Val2 = 0;
             Operator = "";
+            Result = "0";
             return Page();
         }
 

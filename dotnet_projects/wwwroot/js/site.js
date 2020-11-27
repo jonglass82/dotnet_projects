@@ -11,7 +11,32 @@ var val2 = document.getElementById('val2');
 var operator = document.getElementById('operator');
 
 function setValue(val) {
-    operator.value.length > 0 ? val2.value += val : val1.value += val;
+    if (val == 0) {
+        if (val1.value == "0" || val2.value == "0") {
+            return;
+        }
+        else {
+            operator.value.length > 0 ? val2.value += val : val1.value += val;
+        }
+    }
+    else {
+        if (operator.value.length > 0) {
+            if (val == "." && val2.value.split('').includes(val)) {
+                return 
+            }
+            else {
+                val2.value += val;
+            }
+        }
+        else {
+            if (val == "." && val1.value.split('').includes(val)) {
+                return
+            }
+            else {
+                val1.value += val;
+            }
+        }
+    }
 }
 
 function setOperator(op) {
@@ -19,6 +44,5 @@ function setOperator(op) {
 }
 
 function positiveNegative() {
-    operator.value.length > 0 ? val2.value = "-" + Val2.value : Val1.value = "-" + Val1.value;
-
+    operator.value.length > 0 ? val2.value = val2.value * -1 : val1.value = val1.value * -1;
 }
